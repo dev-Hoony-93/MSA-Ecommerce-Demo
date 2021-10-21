@@ -1,15 +1,14 @@
-package com.example.catalogservice.vo;
+package com.example.orderservice.dto;
 
 import lombok.Data;
 
 @Data
-
-public class CatalogDto {
+public class OrderDto {
     private String productId;
     private Integer qty;
     private Integer unitPrice;
     private Integer totalPrice;
 
-    private Integer orderId;
-    private Integer userId;
+    private String orderId;
+    private String userId;
 }

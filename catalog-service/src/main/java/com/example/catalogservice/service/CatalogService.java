@@ -1,6 +1,6 @@
 package com.example.catalogservice.service;
 
-import com.example.catalogservice.entity.CatalogEntity;
+import com.example.catalogservice.jpa.CatalogEntity;
 import com.example.catalogservice.jpa.CatalogRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
