@@ -23,7 +23,7 @@ public class UserDto {
     private String userId;
     private Date createdAt;
 
-    private String encryptPwd;
+    private String encryptedPwd;
 
     private List<ResponseOrder> orders;
 
