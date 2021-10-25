@@ -1,0 +1,13 @@
+token:
+  expiration_time: 86400000  #One day
+  secret: user_token_ecommerce_cloud_rabbit
+
+gateway:
+  ip: 127.0.0.1
+
+spring:
+  datasource:
+   driver-class-name: org.h2.Driver
+   url: jdbc:h2:mem:testdb
+   username: sa
+   password: '{cipher}abfd58dd2ba9b429c48f3a137351f95cb8cb55c67c136a8a0699a8b68588c7a3'
