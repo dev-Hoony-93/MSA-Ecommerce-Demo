@@ -1,0 +1,6 @@
+token:
+  expiration_time: 86400000  #One day
+  secret: user_token_ecommerce_prod
+
+gateway:
+  ip: 127.0.0.1
