@@ -1,6 +1,6 @@
 token:
   expiration_time: 86400000  #One day
-  secret: user_token_ecommerce_cloud_rabbit
+  secret: '{cipher}AQBckWGTOP+Gq2edVo7AkzAbnLJING5BYqnFIy29lBiEMW1w8cYDjM4Qi0up3tv2jyTC+K/GDOJ38DiagOp53KxQ38DpNzkM3UbycOAANT1pvyg27jDZAP81FW73bWcGLDmYxY2whMZMVJeI27cj5mtz4IOcD+FzU47x6CkXtKlFnXwsmS3Y6j32qNt+mUOdhgkV2wW8YRQ9V8OlHD31RXGpv2cAj6lJSFiRm6+WtlMeQhsYpQ7Iim+r88CuVULBe21hCnJ0CDQGknKwVzWK4D6lEEDJxrjn8BhRIOpxQWmKP+LN2zInhkFgrw7x8izuHpVra7djH4MhcQyQrhCx4q/Sia7KqTXu1hEfaSPYAtUk/2Ui083NuccSSdBM7Td333h9Mv3+kpQhXYMvEH/D5ULlVMQox/s7cSQzI3iEZKvSew=='
 
 gateway:
   ip: 127.0.0.1
