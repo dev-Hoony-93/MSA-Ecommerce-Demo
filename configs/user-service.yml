@@ -14,3 +14,5 @@ spring:
 
 order_service:
   url: http://ORDER-SERVICE/order-service/%s/orders #유레카 서버에 가지고 있는 Application name을 넣어주면 로드밸런싱이 가능하다.
+  exception:
+    order_is_empty: User's orders is empty.
