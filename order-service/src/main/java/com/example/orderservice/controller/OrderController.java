@@ -3,6 +3,7 @@ package com.example.orderservice.controller;
 import com.example.orderservice.dto.OrderDto;
 import com.example.orderservice.jpa.OrderEntity;
 import com.example.orderservice.messagequeue.KafkaProducer;
+import com.example.orderservice.messagequeue.OrderProducer;
 import com.example.orderservice.service.OrderService;
 import com.example.orderservice.vo.RequestOrder;
 import com.example.orderservice.vo.ResponseOrder;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class OrderController {
     private final OrderService service;
     private final Environment env;
     private final KafkaProducer kafkaProducer;
+    private final OrderProducer orderProducer;
 
     @GetMapping("/health_check")
     public String status() {
@@ -39,15 +42,23 @@ public class OrderController {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        /* jpa */
         OrderDto orderdto = mapper.map(orderDetails,OrderDto.class);
         orderdto.setUserId(userId);
-        OrderDto createdDto = service.createOrder(orderdto);
 
-        ResponseOrder responseOrder = mapper.map(createdDto, ResponseOrder.class);
+          /* jpa */
+//        OrderDto createdDto = service.createOrder(orderdto);
+//        ResponseOrder responseOrder = mapper.map(createdDto, ResponseOrder.class);
+
+        /*jpa 대신 kafka*/
+        orderdto.setOrderId(UUID.randomUUID().toString());
+        orderdto.setTotalPrice(orderDetails.getQty()*orderDetails.getUnitPrice());
 
         /* send this order to the kafka */
         kafkaProducer.send("example-catalog-topic",mapper.map(orderDetails,OrderDto.class));
+        orderProducer.send("orders",orderdto);
+
+
+        ResponseOrder responseOrder = mapper.map(orderdto,ResponseOrder.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseOrder);
 

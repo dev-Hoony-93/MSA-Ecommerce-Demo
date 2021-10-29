@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final Environment env;
-    private final RestTemplate restTemplate;
+    //private final RestTemplate restTemplate;
     private final OrderServiceClient orderServiceClient;
 
 

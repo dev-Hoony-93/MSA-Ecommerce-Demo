@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "order-service" ,configuration = FeignClient.class)
+@FeignClient(name = "order-service" ) //microservice의 name
 public interface OrderServiceClient {
 
     @GetMapping("/order-service/{userId}/orders")
