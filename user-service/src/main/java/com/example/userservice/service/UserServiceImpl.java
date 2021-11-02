@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -37,6 +39,8 @@ public class UserServiceImpl implements UserService{
     private final Environment env;
     //private final RestTemplate restTemplate;
     private final OrderServiceClient orderServiceClient;
+
+    private final CircuitBreakerFactory circuitBreakerFactory;
 
 
 
@@ -83,7 +87,12 @@ public class UserServiceImpl implements UserService{
         }*/
 
         /*Error Decoder*/
-        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
+        //List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
+
+        /*CircuitBreaker*/
+        CircuitBreaker circuitbreaker = circuitBreakerFactory.create("circuitbreaker");
+        List<ResponseOrder> orderList = circuitbreaker.run(() ->orderServiceClient.getOrders(userId),
+                throwable -> new ArrayList<>());
 
         userDto.setOrders(orderList);
         return userDto;
