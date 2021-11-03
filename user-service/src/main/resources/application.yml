@@ -9,6 +9,12 @@ spring:
     password: guest
   application:
     name: user-service
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    enabled: true
+  slueth:
+    probability: 1.0
+
   h2:
     console:
       enabled: true
