@@ -2,6 +2,7 @@ encrypt:
 #  key: abcdefghijklmnopqrstuvwxyz0123456789
   key-store:
 #    location: file:///${user.home}/Desktop/Work/keystore/apiEncryptionKey.jks
-    location: file:///D:/myProj/MSA-Ecommerce-Demo/rsaKey/apiEncryptionKey.jks
+#    location: file:///D:/myProj/MSA-Ecommerce-Demo/config-service/apiEncryptionKey.jks 도커로 바꾸면서 주석처리
+    location: file:/apiEncryptionKey.jks
     password: 1q2w3e4r
     alias: apiEncryptionKey
